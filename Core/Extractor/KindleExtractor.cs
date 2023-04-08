@@ -49,7 +49,7 @@ public class KindleExtractor : ISourceExtractor
 
     private async Task<List<Extraction>> GetExtractionsSince(DateTime startDate)
     {
-        var page = await _playwrightFactory.NwePageAsync();
+        var page = await _playwrightFactory.NewPageAsync();
         page.SetDefaultTimeout(TimeoutMilliseconds);
 
         _logger.LogInformation("Extracting Kindle highlights after {startDate:yyyy-MM-dd}.", startDate);

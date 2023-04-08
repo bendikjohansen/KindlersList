@@ -26,7 +26,7 @@ public class AnkiImporter : IImporter
     public async Task Add(List<Card> cards)
     {
         _logger.LogInformation("Adding {count} cards to Anki.", cards.Count);
-        var page = await _playwrightFactory.NwePageAsync();
+        var page = await _playwrightFactory.NewPageAsync();
 
         await EnsureAuthenticated(page);
 
@@ -39,6 +39,7 @@ public class AnkiImporter : IImporter
             await page.Locator("#f1").FillAsync(card.Back);
             await page.Locator("text=Save").ClickAsync();
             await page.WaitForSelectorAsync("text=Added.");
+            await page.ScreenshotAsync(new() {Path = $"./screenshots/{card.Back}.png"});
             await page.WaitForSelectorAsync("text=Added.", new () { State = WaitForSelectorState.Hidden });
         }
         await page.WaitForTimeoutAsync(2000);

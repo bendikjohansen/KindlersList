@@ -24,7 +24,7 @@ public class DeeplTranslator : ITranslator
 
     public async Task<List<TranslationResult>> Translate(List<string> phrases)
     {
-        var page = await _playwrightFactory.NwePageAsync();
+        var page = await _playwrightFactory.NewPageAsync();
         page.SetDefaultTimeout(TimeoutMilliseconds);
 
         await page.GotoAsync(DeeplUrl);

@@ -4,7 +4,7 @@ namespace Core;
 
 public interface IPlaywrightFactory
 {
-    Task<IPage> NwePageAsync();
+    Task<IPage> NewPageAsync();
 }
 
 public class PlaywrightFactory : IPlaywrightFactory
@@ -14,7 +14,7 @@ public class PlaywrightFactory : IPlaywrightFactory
     private IPlaywright? _playwright;
     private IBrowserContext? _browserContext;
 
-    public async Task<IPage> NwePageAsync()
+    public async Task<IPage> NewPageAsync()
     {
         _playwright ??= await Playwright.CreateAsync();
         _browserContext ??= await _playwright.Firefox.LaunchPersistentContextAsync(UserData, new() {IgnoreHTTPSErrors = true});
